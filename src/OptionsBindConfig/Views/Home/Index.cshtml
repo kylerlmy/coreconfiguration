@@ -1,0 +1,43 @@
+﻿@model OptionsBindConfig.Class
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h2>Index</h2>
+    <h4>Class No:@Model.ClassNo</h4>
+    <h4>Class Desc:@Model.ClassDesc</h4>
+
+    <h3>Students:</h3>
+    <div>
+        @foreach (var student in Model.Students)
+        {
+            <span>Name:@student.Name</span>
+            <span>Age:@student.Age</span>
+        }
+    </div>
+
+@*方法2*@
+
+@*@using Microsoft.Extensions.Options
+@model OptionsBindConfig.Class*@
+@*@inject IOptions<OptionsBindConfig.Class> MyOptions;*@  
+
+@*一下方法实现配置的热更新*@
+@*@inject IOptionsSnapshot<OptionsBindConfig.Class> MyOptions;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<h4>Class No:@MyOptions.Value.ClassNo</h4>
+<h4>Class Desc:@MyOptions.Value.ClassDesc</h4>
+
+<h3>Students:</h3>
+<div>
+    @foreach (var student in MyOptions.Value.Students)
+    {
+        <span>Name:@student.Name</span>
+        <span>Age:@student.Age</span>
+    }
+</div>*@
+
